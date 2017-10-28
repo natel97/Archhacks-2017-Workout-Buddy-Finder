@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,10 +36,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        //TODO: Get data from databasehelper
-
-        holder.messageFrom.setText(messages.get(position).getSender());
-        holder.shortDescription.setText(messages.get(position).getBody());
+        holder.messageFrom.setText(String.valueOf(messages.get(position).getSender()));
+        holder.shortDescription.setText(String.valueOf(messages.get(position).getBody()));
     }
 
     @Override

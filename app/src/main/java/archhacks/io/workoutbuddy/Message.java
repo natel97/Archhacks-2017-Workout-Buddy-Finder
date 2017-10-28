@@ -6,15 +6,18 @@ package archhacks.io.workoutbuddy;
 
 public class Message {
 
-    private String messageFrom;
+    private int messageFrom;
     private String messageBody;
+    private int messageTo;
 
-    public Message(String fr, String bo){
-        this.messageBody = bo;
-        this.messageFrom = fr;
+    public Message(int from, int to, String body){
+        this.messageBody = body;
+        this.messageFrom = from;
+        this.messageTo = to;
     }
 
-    public String getSender(){return messageFrom;}
+    public int getSender(){return messageFrom;}
+    public int getReceiver(){return messageTo;}
     public String getBody() {return messageBody;}
 
 }

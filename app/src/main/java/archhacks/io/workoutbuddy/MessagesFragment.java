@@ -32,13 +32,12 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
         mview = inflater.inflate(R.layout.fragment_messages, container, false);
         recyclerView = mview.findViewById(R.id.messages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        db.sendMessage(1,0, "Hello!!!");
+        db.sendMessage(2, 0, "Hey there! Hows it going?");
 
-        messages = new LinkedList<>();
+        messageAdapter = new MessageAdapter(getContext(), new DatabaseHelper(getContext()).getMessages(0));
 
-        messages.add(new Message("Nathanial Lubitz", "This is my First MESSAGE!!"));
-        messages.add(new Message("Joe Shmmo", "Where ya at??"));
-
-        messageAdapter = new MessageAdapter(getContext(), messages);
 
 
         recyclerView.setAdapter(messageAdapter);
@@ -49,6 +48,6 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Log.i("VIEW",((Message)view.getTag()).getSender());
+        //Log.i("VIEW",((Message)view.getTag()).getSender());
     }
 }
