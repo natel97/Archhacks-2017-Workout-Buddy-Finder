@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME = "SuperSecretData.db";
-    private static int DATABASE_VERSION = 1;
+    private static int DATABASE_VERSION = 2;
 
 
     //People Table Declarations
@@ -27,7 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String PERSON_SCHEDULE = "Person_Schedule";
     private String ACCOUNT_CREATION_DATE = "Person_Created";
     private String ACCOUNT_LAST_LOGGED_IN = "Person_Last_Login";
-    private String ACCOUNT_FLAGGED = "Account Flagged";
+    private String ACCOUNT_FLAGGED = "Account_Flagged";
+    private String PERSON_IMAGE = "User_Image";
 
     //Message Table Declarations
 
@@ -59,7 +60,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PERSON_SCHEDULE + " TEXT" + ", " +
                 ACCOUNT_FLAGGED + " TEXT" + ", " +
                 ACCOUNT_CREATION_DATE + " INTEGER" + ", " +
-                ACCOUNT_LAST_LOGGED_IN + " TIMESTAMP"  + ");");
+                ACCOUNT_LAST_LOGGED_IN + " TIMESTAMP"  +
+                PERSON_IMAGE + " TEXT " + ");");
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + MESSAGE_TABLE + "(" + MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +

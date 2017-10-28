@@ -6,15 +6,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/BTNYoga"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/yoga"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/BTNJog"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/jogging"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BTNLift"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/lifting"
+        app:layout_constraintBottom_toTopOf="@+id/BTNHike"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTNYoga" />
+
+    <Button
+        android:id="@+id/BTNWalk"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/walking"
+        app:layout_constraintBottom_toTopOf="@+id/BTNBike"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BTNJog" />
+
+    <Button
+        android:id="@+id/BTNHike"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/hiking"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/BTNBike"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bike_riding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
