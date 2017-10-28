@@ -50,9 +50,15 @@ notifications:
 edit profile:
 		add picture
 		add bio
-		add birthday
+		add birthday/age
 		add gender
 		show accomplishments
-				
+		add goals (fitness goals)
+		interests
+		preferred workout activities
+		restrictions/disabilities maybe?
+		origin
+		languages
+		
 
 
