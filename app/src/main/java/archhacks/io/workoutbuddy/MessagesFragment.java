@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +34,9 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
         messages.add(new Message("Nathanial Lubitz", "This is my First MESSAGE!!"));
         messages.add(new Message("Joe Shmmo", "Where ya at??"));
 
+
         messageAdapter = new MessageAdapter(getContext(), messages);
+
 
         recyclerView.setAdapter(messageAdapter);
 
@@ -43,6 +47,6 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        Log.i("VIEW",((Message)view.getTag()).getSender());
     }
 }

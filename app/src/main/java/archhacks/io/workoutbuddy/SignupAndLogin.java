@@ -30,6 +30,7 @@ public class SignupAndLogin extends AppCompatActivity{
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(),MainActivity.class);
                 startActivity(i);
+
             }
         });
 

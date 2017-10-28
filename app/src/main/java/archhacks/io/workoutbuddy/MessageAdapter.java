@@ -60,6 +60,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             this.avatar = view.findViewById(R.id.avatar);
             this.messageFrom= view.findViewById(R.id.message_from_user);
             this.shortDescription = view.findViewById(R.id.message_short_description);
+
+
         }
     }
 }

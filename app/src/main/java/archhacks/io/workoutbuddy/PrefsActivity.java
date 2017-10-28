@@ -1,30 +1,24 @@
 package archhacks.io.workoutbuddy;
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
+/**
+ * Created by natel on 10/28/2017.
+ */
 
-public class MainActivity extends AppCompatActivity {
+public class PrefsActivity extends AppCompatActivity {
 
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private PrefsActivity.SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -34,33 +28,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_preferences);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new PrefsActivity.SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.PrefContainer);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.PrefTabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent prefs = new Intent();
-                prefs.setClass(getApplicationContext(),PrefsActivity.class);
-                startActivity(prefs);
-            }
-        });
+    }
 
-    }
-    public void messageClick(View v){
-        Log.i("Hello", v.toString());
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -93,14 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return (position == 0) ? new NearbyPeopleFragment() : new MessagesFragment();
+            return (position == 0) ? new Prefs0Fragment() : (position == 1) ? new Prefs1Fragment() : new Prefs2Fragment();
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
-
-
     }
 }
