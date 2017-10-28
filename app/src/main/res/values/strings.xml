@@ -2,4 +2,19 @@
     <string name="app_name">WorkoutBuddy</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string-array name="workouts">
+        <item>Off</item>
+        <item>Legs and Pectorals</item>
+        <item>Biceps and Triceps</item>
+        <item>Abs and Backs</item>
+        <item>Easy Jog</item>
+        <item>Distance Run</item>
+        <item>Sprints</item>
+        <item>Yoga</item>
+        <item>Hiking</item>
+        <item>Short Bike Ride</item>
+        <item>Mid Distance Bike Ride</item>
+        <item>Long Distance Bike Ride</item>
+        <item>Walking</item>
+    </string-array>
 </resources>
