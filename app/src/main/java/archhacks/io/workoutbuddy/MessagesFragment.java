@@ -16,6 +16,9 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
     private View mview;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mview = inflater.inflate(R.layout.fragment_messages, container, false);
+
+
+
         return mview;
     }
 
