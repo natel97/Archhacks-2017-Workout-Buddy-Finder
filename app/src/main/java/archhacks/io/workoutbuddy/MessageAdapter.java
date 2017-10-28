@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
@@ -24,13 +23,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     List<Message> messages;
     public MessageAdapter(Context context, List<Message> Messages) {
         mContext = context;
-        Resources res = mContext.getResources();
         messages = Messages;
     }
 
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Get the RecyclerView item layout
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.message, parent, false);
         return new MessageViewHolder(view);

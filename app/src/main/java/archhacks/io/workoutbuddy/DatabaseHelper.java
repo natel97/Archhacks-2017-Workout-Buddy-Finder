@@ -10,6 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static String DATABASE_NAME = "SuperSecretData.db";
+    private static int DATABASE_VERSION = 1;
+
+
     //People Table Declarations
 
     private String PEOPLE_TABLE = "People";
@@ -20,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String PERSON_EMAIL = "Person_Email";
     private String PERSON_PASSWORD = "Person_Password";
     private String PERSON_PREFERED_ACTIVITIES = "Person_Activities";
-    private String SCHEDULE = "Person_Schedule";
+    private String PERSON_SCHEDULE = "Person_Schedule";
     private String ACCOUNT_CREATION_DATE = "Person_Created";
     private String ACCOUNT_LAST_LOGGED_IN = "Person_Last_Login";
     private String ACCOUNT_FLAGGED = "Account Flagged";
@@ -33,27 +37,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String MESSAGE_TO_ID = "Message_To";
     private String MESSAGE_BODY = "Message_Body";
     private String MESSAGE_SENT = "Message_Date";
-    private String MESSSAGE_FLAGGED = "Message_Flag";
+    private String MESSAGE_FLAGGED = "Message_Flag";
 
 
 
-    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         //TODO : Implement the method that creates a SQLite database
+        sqLiteDatabase.execSQL("CREATE TABLE " + PEOPLE_TABLE + "(" + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
+                PERSON_NAME + " TEXT" + ", " +
+                PERSON_LOCATION + " INTEGER" + ", " +
+                PERSON_AGE + " INTEGER" + ", " +
+                PERSON_EMAIL + " TEXT" + ", " +
+                PERSON_PASSWORD + " TEXT" + ", " +
+                PERSON_PREFERED_ACTIVITIES + " TEXT" + ", " +
+                PERSON_SCHEDULE + " TEXT" + ", " +
+                ACCOUNT_FLAGGED + " TEXT" + ", " +
+                ACCOUNT_CREATION_DATE + " INTEGER" + ", " +
+                ACCOUNT_LAST_LOGGED_IN + " TIMESTAMP"  + ");");
+
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + MESSAGE_TABLE + "(" + MESSAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
+                MESSAGE_FROM_ID + " INTEGER" + ", " +
+                MESSAGE_TO_ID + " TEXT" + ", " +
+                MESSAGE_BODY + " TEXT" + ", " +
+                MESSAGE_SENT + " TIMESTAMP" + ", " +
+                MESSAGE_FLAGGED + " TEXT" + ", " + ");");
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-        //TODO : Implement the method so that it destroys the database and calls the onCreate method
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PEOPLE_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MESSAGE_TABLE);
+        onCreate(sqLiteDatabase);
 
     }
 
-    //TODO: Create and implement more methods!
+
 }

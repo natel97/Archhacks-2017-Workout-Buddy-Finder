@@ -1,5 +1,6 @@
 package archhacks.io.workoutbuddy;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.amazonaws.services.s3.AmazonS3Client;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,17 +32,16 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
         mview = inflater.inflate(R.layout.fragment_messages, container, false);
         recyclerView = mview.findViewById(R.id.messages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         messages = new LinkedList<>();
 
         messages.add(new Message("Nathanial Lubitz", "This is my First MESSAGE!!"));
         messages.add(new Message("Joe Shmmo", "Where ya at??"));
 
-
         messageAdapter = new MessageAdapter(getContext(), messages);
 
 
         recyclerView.setAdapter(messageAdapter);
-
 
         return mview;
     }
