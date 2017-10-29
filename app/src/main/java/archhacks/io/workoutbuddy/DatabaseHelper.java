@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -92,16 +93,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 MESSAGE_BODY + ", " + MESSAGE_SENT + ", " + MESSAGE_FLAGGED + ") VALUES (" + String.valueOf(from) + ", " + String.valueOf(to) + ", '"
         + body + "', " + String.valueOf(System.currentTimeMillis()) + ", 'false');");
     }
-    public List<Message> getMessages(int id){
+    public List<Message> getMessages(int id) {
         List<Message> messages = new LinkedList<>();
 
         Cursor cur = this.getReadableDatabase().rawQuery("SELECT " + MESSAGE_FROM_ID + ", " + MESSAGE_TO_ID + ", " + MESSAGE_BODY + " FROM " + MESSAGE_TABLE + " WHERE " + MESSAGE_FROM_ID + " == " + String.valueOf(id) + " OR " +
-        MESSAGE_TO_ID + " == " + String.valueOf(id) + ";",null);
-        cur.moveToFirst();
-        while(cur.moveToNext()){
-            messages.add(new Message(cur.getInt(0),cur.getInt(1),cur.getString(2)));
+                MESSAGE_TO_ID + " == " + String.valueOf(id) + " ORDER BY " + MESSAGE_SENT, null);
+        cur.moveToLast();
+        while (cur.moveToPrevious()) {
+            messages.add(new Message(cur.getInt(0), cur.getInt(1), cur.getString(2)));
         }
         return messages;
-
     }
+
+        public List<Message> getConversation(String from, String to){
+        List<Message> messages = new LinkedList<>();
+        Cursor data = getReadableDatabase().rawQuery("SELECT " + MESSAGE_FROM_ID + ", " + MESSAGE_TO_ID + ", " + MESSAGE_BODY + " FROM " + MESSAGE_TABLE + " WHERE (" + MESSAGE_FROM_ID + " == '" + from + "' OR + " + MESSAGE_TO_ID + " == '" + from + "') AND ("  + MESSAGE_FROM_ID + " == '" + to + "' OR + " + MESSAGE_TO_ID + " == '" + to + "') ORDER BY " + MESSAGE_SENT + " DESC",null);
+        data.moveToFirst();
+        while(data.moveToNext()){
+            messages.add(new Message(data.getInt(0), data.getInt(1), data.getString(2)));
+        }
+        Log.i("There are items!", String.valueOf(data.getCount()));
+        if (messages.isEmpty())
+            messages.add(new Message(0,0,"No messages"));
+        return messages;
+    }
+
+    
 }
