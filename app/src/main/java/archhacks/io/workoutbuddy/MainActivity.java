@@ -59,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void messageClick(View v){
-        Log.i("Hello", v.toString());
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(),MessageLog.class);
+        i.putExtra("From", ((Message)v.getTag()).getSender());
+        i.putExtra("To", (((Message) v.getTag()).getReceiver()));
+        startActivity(i);
     }
 
     @Override

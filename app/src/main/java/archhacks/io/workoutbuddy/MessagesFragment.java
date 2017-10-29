@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -33,12 +34,8 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
         recyclerView = mview.findViewById(R.id.messages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        messages = new LinkedList<>();
+        messageAdapter = new MessageAdapter(getContext(), new DatabaseHelper(getContext()).getMessages(0));
 
-        messages.add(new Message("Nathanial Lubitz", "This is my First MESSAGE!!"));
-        messages.add(new Message("Joe Shmmo", "Where ya at??"));
-
-        messageAdapter = new MessageAdapter(getContext(), messages);
 
 
         recyclerView.setAdapter(messageAdapter);
@@ -49,6 +46,6 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Log.i("VIEW",((Message)view.getTag()).getSender());
+        Log.i("Hi","hi");
     }
 }

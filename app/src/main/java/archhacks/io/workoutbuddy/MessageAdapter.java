@@ -2,12 +2,15 @@ package archhacks.io.workoutbuddy;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Console;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,10 +38,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        //TODO: Get data from databasehelper
-
-        holder.messageFrom.setText(messages.get(position).getSender());
-        holder.shortDescription.setText(messages.get(position).getBody());
+        holder.messageFrom.setText(String.valueOf(messages.get(position).getSender()));
+        holder.shortDescription.setText(String.valueOf(messages.get(position).getBody()));
+        holder.avatar.setImageResource(R.drawable.bike_riding);
+        holder.itemView.setTag(messages.get(position));
     }
 
     @Override
@@ -57,8 +60,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             this.avatar = view.findViewById(R.id.avatar);
             this.messageFrom= view.findViewById(R.id.message_from_user);
             this.shortDescription = view.findViewById(R.id.message_short_description);
-
-
         }
     }
 }
