@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -88,13 +89,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Person> getPeople(){
         Cursor cur = this.getWritableDatabase().rawQuery("SELECT * FROM " + PEOPLE_TABLE,null);
-
+        List<Person> people = new LinkedList<>();
         cur.moveToFirst();
 
         while(cur.moveToNext()){
-            Log.i("hllo",cur.getColumnNames().toString());
+            if(cur.getString(3) != null)
+            people.add(new Person(cur.getInt(1), cur.getString(2), cur.getString(3).split(" "),cur.getString(4), cur.getInt(5), cur.getString(6), cur.getString(7).split(" "), cur.getString(8).equals("true"), cur.getInt(9),new Date(), cur.getString(11)));
         }
-        return null;
+        Log.i("size",String.valueOf(people.size()));
+        return people;
     }
 
     public void addPerson(String name, int location, int age, String email, String password, String activities, String schedule, boolean flagged, String image ){
@@ -103,6 +106,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ACCOUNT_LAST_LOGGED_IN + ", " + PERSON_IMAGE + ") VALUES ('" + name + "', " + location + ", " + age + ", '" + email + "', '" + password +
         "', '" + activities + "', '" + schedule + "', '" + flagged + "', " + System.currentTimeMillis() + ", " + System.currentTimeMillis() + ", '" + image + "')");
 
+    }
+
+    public int checkPassword(String email, String password){
+        Cursor cur = this.getReadableDatabase().rawQuery("SELECT " + PERSON_PASSWORD + " FROM " + PEOPLE_TABLE + " WHERE " + PERSON_EMAIL + " == '" + email + "'",null);
+        Cursor pwCheck = this.getReadableDatabase().rawQuery("SELECT " + PERSON_ID + " FROM " + PEOPLE_TABLE + " WHERE " + PERSON_EMAIL + " == '" + email  + "'",null);
+        pwCheck.moveToFirst();
+        cur.moveToFirst();
+        if(pwCheck.getCount() == 0) return -1;
+        return (password.equals(cur.getInt(0))) ? pwCheck.getInt(0)  : -1;
+    }
+
+    public boolean createBaseUser(String email, String password) {
+        try {
+            if(getReadableDatabase().rawQuery("SELECT * FROM " + PEOPLE_TABLE + " WHERE " + PERSON_EMAIL + " == '" + email + "'",null).getCount() > 0)
+                return false;
+            getWritableDatabase().execSQL("INSERT INTO " + PEOPLE_TABLE + "(" + PERSON_EMAIL + ", " + PERSON_PASSWORD + ") VALUES('" + email + "', '" + password + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public void sendMessage(int from, int to, String body){
