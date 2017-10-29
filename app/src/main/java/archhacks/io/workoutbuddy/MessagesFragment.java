@@ -38,6 +38,7 @@ public class MessagesFragment extends Fragment implements View.OnClickListener {
 
 
 
+
         recyclerView.setAdapter(messageAdapter);
 
         return mview;

@@ -16,7 +16,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME = "SuperSecretData.db";
-    private static int DATABASE_VERSION = 2;
+    private static int DATABASE_VERSION = 4;
 
 
     //People Table Declarations
@@ -54,7 +54,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        //TODO : Implement the method that creates a SQLite database
         sqLiteDatabase.execSQL("CREATE TABLE " + PEOPLE_TABLE + "(" + PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ", " +
                 PERSON_NAME + " TEXT" + ", " +
                 PERSON_LOCATION + " INTEGER" + ", " +
@@ -65,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PERSON_SCHEDULE + " TEXT" + ", " +
                 ACCOUNT_FLAGGED + " TEXT" + ", " +
                 ACCOUNT_CREATION_DATE + " INTEGER" + ", " +
-                ACCOUNT_LAST_LOGGED_IN + " TIMESTAMP"  +
+                ACCOUNT_LAST_LOGGED_IN + " TIMESTAMP"  +", " +
                 PERSON_IMAGE + " TEXT " + ");");
 
 
@@ -84,6 +83,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PEOPLE_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MESSAGE_TABLE);
         onCreate(sqLiteDatabase);
+
+    }
+
+    public List<Person> getPeople(){
+        Cursor cur = this.getWritableDatabase().rawQuery("SELECT * FROM " + PEOPLE_TABLE,null);
+
+        cur.moveToFirst();
+
+        while(cur.moveToNext()){
+            Log.i("hllo",cur.getColumnNames().toString());
+        }
+        return null;
+    }
+
+    public void addPerson(String name, int location, int age, String email, String password, String activities, String schedule, boolean flagged, String image ){
+        getWritableDatabase().execSQL("INSERT INTO " + PEOPLE_TABLE + "(" + PERSON_NAME + ", " + PERSON_LOCATION + ", " + PERSON_AGE + ", " + PERSON_EMAIL + ", " +
+        PERSON_PASSWORD + ", " + PERSON_PREFERED_ACTIVITIES + ", " + PERSON_SCHEDULE + ", " + ACCOUNT_FLAGGED + ", " + ACCOUNT_CREATION_DATE + ", " +
+        ACCOUNT_LAST_LOGGED_IN + ", " + PERSON_IMAGE + ") VALUES ('" + name + "', " + location + ", " + age + ", '" + email + "', '" + password +
+        "', '" + activities + "', '" + schedule + "', '" + flagged + "', " + System.currentTimeMillis() + ", " + System.currentTimeMillis() + ", '" + image + "')");
 
     }
 
@@ -112,11 +130,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while(data.moveToNext()){
             messages.add(new Message(data.getInt(0), data.getInt(1), data.getString(2)));
         }
-        Log.i("There are items!", String.valueOf(data.getCount()));
-        if (messages.isEmpty())
-            messages.add(new Message(0,0,"No messages"));
         return messages;
     }
 
-    
+
+
+
 }

@@ -19,9 +19,10 @@ public class Person {
     private boolean flagged;
     private int lastOnline;
     private Date accountCreated;
+    private String image;
 
 
-    public Person(int Age, String Name, String[] Workouts, String Bio, int Location, String Email, String[] Schedule, boolean Flag, int LastOnline, Date AccountCreated){
+    public Person(int Age, String Name, String[] Workouts, String Bio, int Location, String Email, String[] Schedule, boolean Flag, int LastOnline, Date AccountCreated, String img){
         this.age = Age;
         this.name = Name;
         this.workouts = Workouts;
@@ -32,6 +33,7 @@ public class Person {
         this.flagged = Flag;
         this.lastOnline = LastOnline;
         this.accountCreated = AccountCreated;
+        this.image = img;
     }
 
 
@@ -59,4 +61,5 @@ public class Person {
     public int getLastOnline() { return lastOnline;}
 
     public Date getAccountCreated() {return accountCreated;}
+    public String getImage() {return image;}
 }

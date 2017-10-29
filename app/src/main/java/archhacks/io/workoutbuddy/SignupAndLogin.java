@@ -24,7 +24,11 @@ public class SignupAndLogin extends AppCompatActivity{
         EditText email = (EditText) findViewById(R.id.emailInput);
         EditText password = (EditText) findViewById(R.id.passwordInput);
 
-        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        final DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+
+        MessageAndPeopleGenerator p = new MessageAndPeopleGenerator(20,getApplicationContext());
+        p.run();
+
 
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +37,8 @@ public class SignupAndLogin extends AppCompatActivity{
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(),MainActivity.class);
                 startActivity(i);
+
+                db.getPeople();
 
             }
         });
