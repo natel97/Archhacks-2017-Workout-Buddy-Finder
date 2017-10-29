@@ -35,7 +35,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
     @Override
     public void onBindViewHolder(PeopleAdapter.PeopleViewHolder holder, int position) {
         holder.name.setText(String.valueOf(people.get(position).getName()));
-        holder.avatar.setImageResource(mContext.getResources().getIdentifier("testimage", "drawable", "your.package.name"));
+        holder.avatar.setImageResource(mContext.getResources().getIdentifier(people.get(position).getImage(), "drawable", "archhacks.io.workoutbuddy"));
     }
 
     @Override
