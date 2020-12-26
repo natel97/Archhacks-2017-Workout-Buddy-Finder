@@ -25,7 +25,7 @@ An Android Native application
 
 Simple login system, matches against a local SQLite database for prototype sake.
 
-![IMG Login](./screenshots/login.png | width=256)
+<img src="./screenshots/login.png" width="256">
 
 in make an account:
 
@@ -36,7 +36,7 @@ in make an account:
 
 ### Setting up preferences
 
-![IMG Bio](./screenshots/preference-bio.png | width=256)
+<img src="./screenshots/preference-bio.png" width="256">
 
 Preferences could be expanded to include:
 
@@ -52,11 +52,12 @@ Preferences could be expanded to include:
 - languages
 
 You can also set up a schedule to find matches that fit your workout schedule
-![IMG Schedule](./screenshots/preference-planner.png | width=256)
+
+<img src="./screenshots/preference-planner.png" width="256">)
 
 ## Browsing Workout Category Matches
 
-![IMG Categories](./screenshots/preference-workouts.png | width=256)
+<img src="./screenshots/preference-workouts.png" width="256">)
 
 - list of people interested in the same activites
 - access to their public profile
@@ -65,7 +66,8 @@ You can also set up a schedule to find matches that fit your workout schedule
 - // maybe follow them?
 
 Chat With matches
-![IMG Chat](./screenshots/chat.png | width=256)
+
+<img src="./screenshots/chat.png" width="256">
 
 Set expectations and verify that you would be great workout partners
 
